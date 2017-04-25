@@ -23,3 +23,13 @@ Open the .xcodeproj file in XCode and run.
 * Yelp Fusion API
 * OAuthSwift
 * SwiftyJSON
+
+## Troubleshooting (mostly for us developers to keep track of links)
+When adding/removing pods, you need to do the following. For reference: [Walkthrough from StackOverflow](http://stackoverflow.com/questions/13751147/remove-or-uninstall-library-previously-added-cocoapods)
+~~~~
+sudo gem install cocoapods-deintegrate
+sudo gem install cocoapods-clean
+pod deintegrate
+pod clean
+pod install
+~~~~
