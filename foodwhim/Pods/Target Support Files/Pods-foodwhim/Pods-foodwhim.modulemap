@@ -1,0 +1,6 @@
+framework module Pods_foodwhim {
+  umbrella header "Pods-foodwhim-umbrella.h"
+
+  export *
+  module * { export * }
+}

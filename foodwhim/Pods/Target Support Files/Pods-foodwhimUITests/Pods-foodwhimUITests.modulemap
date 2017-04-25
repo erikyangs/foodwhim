@@ -1,0 +1,6 @@
+framework module Pods_foodwhimUITests {
+  umbrella header "Pods-foodwhimUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
