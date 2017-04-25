@@ -5,7 +5,7 @@
 For indecisive people. Tells you **exactly** what to eat.
 
 ## Setup
-Make sure you have CocoaPods installed.
+Make sure you have CocoaPods installed. [Walkthrough From StackOverflow](http://stackoverflow.com/questions/20755044/how-to-install-cocoa-pods)
 ~~~~
 sudo gem install cocoapods
 pod setup --verbose
