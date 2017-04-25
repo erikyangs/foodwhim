@@ -14,7 +14,7 @@ Then navigate to the XCode project root directory (where .xcodeproj file resides
 ~~~~
 pod install
 ~~~~
-Open the .xcodeproj file in XCode and run.
+Open the **.xcworkspace** file in XCode and run.
 
 ## Features
 * Finds food based on preferences
