@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
     let appSecret = "HcCAjvHOhKIpSt0yh5qGh8zeAMpK6dTwKMFYWRVoeEvXwG25AOD4Gs31oHoNJJP8"
     var avPlayer: AVPlayer!
     var avPlayerLayer: AVPlayerLayer!
+    var isYelpClientReady:Bool = false
     var yelpClient: YLPClient!
     
     override func viewDidLoad() {
@@ -36,10 +37,8 @@ class MainViewController: UIViewController {
         YLPClient.authorize(withAppId: appId, secret: appSecret,
                             completionHandler: {(client: YLPClient?, error: Error?) -> Void in
                                 self.yelpClient = client!
-                                self.yelpClient.search(withLocation: "Berkeley, CA", completionHandler: {(search: YLPSearch?, error: Error?) -> Void in
-                                    print("search complete")
-                                    print(search!.businesses[0].name)
-                                    })
+                                self.isYelpClientReady = true
+                                print("Yelp API authorized for app")
                             })
     }
     
@@ -97,7 +96,12 @@ class MainViewController: UIViewController {
     
     //SUGGEST BUTTON PRESS
     @IBAction func pressedSuggestButton(_ sender: UIButton) {
-        print("mmm")
+        if(isYelpClientReady){
+            self.yelpClient.search(withLocation: "Berkeley, CA", completionHandler: {(search: YLPSearch?, error: Error?) -> Void in
+                print("Search complete")
+                print(search!.businesses[0].name)
+            })
+        }
     }
 }
 
