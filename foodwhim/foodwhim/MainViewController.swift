@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
         //GREETING TEXT
         let greeting = self.view.viewWithTag(1) as! UILabel
         var greetingList = ["Welcome Back.", "Hungry?", "Be Decisive Today.", "Welcome to FoodWhim.", "Satisfy Your Cravings."]
-        let greetingListRandomIndex = Int(arc4random_uniform(UInt32(greetingList.count)))
+        let greetingListRandomIndex = randomArrayId(input: greetingList.count)
         greeting.text = greetingList[greetingListRandomIndex]
         
         //YELP FUSION API
@@ -94,12 +94,20 @@ class MainViewController: UIViewController {
         avPlayer.pause()
     }
     
+    //random array id helper method
+    func randomArrayId(input: Int) -> Int{
+        return Int(arc4random_uniform(UInt32(input)))
+    }
+    
     //SUGGEST BUTTON PRESS
     @IBAction func pressedSuggestButton(_ sender: UIButton) {
         if(isYelpClientReady){
             self.yelpClient.search(withLocation: "Berkeley, CA", completionHandler: {(search: YLPSearch?, error: Error?) -> Void in
                 print("Search complete")
-                print(search!.businesses[0].name)
+                let randomBusinessId = self.randomArrayId(input: search!.businesses.count)
+                print(search!.businesses[randomBusinessId].name)
+                //segue needs fixing
+                self.performSegue(withIdentifier: "segueToResult", sender: nil)
             })
         }
     }

@@ -68,10 +68,40 @@
                             <constraint firstAttribute="trailingMargin" secondItem="2tW-nd-Tkz" secondAttribute="trailing" constant="-20" id="no7-dT-I22"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="YCW-QP-SaL" kind="show" identifier="segueToResult" id="6b1-kF-I9y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="116" y="122.78860569715144"/>
+        </scene>
+        <!--Result-->
+        <scene sceneID="jab-70-tPk">
+            <objects>
+                <viewController title="Result" id="YCW-QP-SaL" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="adc-Qo-rSm"/>
+                        <viewControllerLayoutGuide type="bottom" id="bl8-K0-FKi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FaW-Hr-uyw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGH-8Q-nBo">
+                                <rect key="frame" x="32" y="38" width="310" height="152"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="CircularTT-Medium" family="Circular TT" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="49P-ZI-c9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="828" y="122.78860569715144"/>
         </scene>
     </scenes>
     <resources>
