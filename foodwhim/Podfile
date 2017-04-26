@@ -6,7 +6,8 @@ target 'foodwhim' do
   use_frameworks!
 
   # Pods for foodwhim
-  pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+  pod 'YelpAPI'
+  pod 'BrightFutures'
 
   target 'foodwhimTests' do
     inherit! :search_paths

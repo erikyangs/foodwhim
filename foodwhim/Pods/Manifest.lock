@@ -1,21 +1,18 @@
 PODS:
-  - SwiftyJSON (3.1.4)
+  - BrightFutures (5.2.0):
+    - Result (~> 3.2)
+  - Result (3.2.1)
+  - YelpAPI (2.0.0)
 
 DEPENDENCIES:
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
-
-EXTERNAL SOURCES:
-  SwiftyJSON:
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
-
-CHECKOUT OPTIONS:
-  SwiftyJSON:
-    :commit: 03bcacb1a7a428e569eecd0afb2d811c8d0e1f56
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+  - BrightFutures
+  - YelpAPI
 
 SPEC CHECKSUMS:
-  SwiftyJSON: 05cf0e98a950e2ba343735264f5a96b81e755d00
+  BrightFutures: 8681dbb9fa831b69b6e7dc4a498b9e081d5daeb5
+  Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
+  YelpAPI: a0475cf4a7b6f9fe81f1bb7b8a8492770f21e3c7
 
-PODFILE CHECKSUM: 805ff81ed8350e0301a4059f1cd94b2b903ac1b1
+PODFILE CHECKSUM: 6c6c184127d14cefec3d56ed9cf2939d0490f2a0
 
 COCOAPODS: 1.2.1

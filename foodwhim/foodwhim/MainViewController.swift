@@ -9,9 +9,12 @@
 import UIKit
 import QuartzCore
 import AVFoundation
+import YelpAPI
 
 class MainViewController: UIViewController {
     //FIELDS
+    let appId = "lQwRGkdMNvY6e_Zo1RSDVQ"
+    let appSecret = "HcCAjvHOhKIpSt0yh5qGh8zeAMpK6dTwKMFYWRVoeEvXwG25AOD4Gs31oHoNJJP8"
     var avPlayer: AVPlayer!
     var avPlayerLayer: AVPlayerLayer!
     
@@ -20,6 +23,36 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         print("Loaded MainViewController")
         
+        setupBackgroundVideo()
+        
+        //GREETING TEXT
+        let greeting = self.view.viewWithTag(1) as! UILabel
+        var greetingList = ["Welcome Back.", "Hungry?", "Be Decisive Today.", "Welcome to FoodWhim.", "Satisfy Your Cravings."]
+        let greetingListRandomIndex = Int(arc4random_uniform(UInt32(greetingList.count)))
+        greeting.text = greetingList[greetingListRandomIndex]
+        
+        //YELP API
+        // Search for 3 dinner restaurants
+        let query = YLPQuery(location: "San Francisco, CA")
+        query.term = "dinner"
+        query.limit = 3
+        
+        YLPClient.authorize(withAppId: appId, secret: appSecret).flatMap { client in
+            client.search(withQuery: query)
+            }.onSuccess { search in
+                if let topBusiness = search.businesses.first {
+                    print("Top business: \(topBusiness.name), id: \(topBusiness.identifier)")
+                } else {
+                    print("No businesses found")
+                }
+                exit(EXIT_SUCCESS)
+            }.onFailure { error in
+                print("Search errored: \(error)")
+                exit(EXIT_FAILURE)
+        }
+    }
+    
+    func setupBackgroundVideo(){
         // Find UIImageView background (used in place of background video if it doesn't work)
         let background = self.view.viewWithTag(-1) //tag set to -1 in storyboard
         
@@ -48,12 +81,6 @@ class MainViewController: UIViewController {
                                                selector: #selector(playerItemDidReachEnd(notification:)),
                                                name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
                                                object: avPlayer.currentItem)
-        
-        //GREETING TEXT
-        let greeting = self.view.viewWithTag(1) as! UILabel
-        var greetingList = ["Welcome Back.", "Hungry?", "Be Decisive Today.", "Welcome to FoodWhim."]
-        let greetingListRandomIndex = Int(arc4random_uniform(UInt32(greetingList.count)))
-        greeting.text = greetingList[greetingListRandomIndex]
     }
 
     override func didReceiveMemoryWarning() {
