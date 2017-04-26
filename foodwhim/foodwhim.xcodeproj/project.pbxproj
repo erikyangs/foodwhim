@@ -17,10 +17,11 @@
 		F10227DA1E8206A9009D9A45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10227D81E8206A9009D9A45 /* LaunchScreen.storyboard */; };
 		F10227E51E8206A9009D9A45 /* foodwhimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10227E41E8206A9009D9A45 /* foodwhimTests.swift */; };
 		F10227F01E8206A9009D9A45 /* foodwhimUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10227EF1E8206A9009D9A45 /* foodwhimUITests.swift */; };
-		F1856E3F1EAFE45A00EDA134 /* Circular-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1856E3B1EAFE45A00EDA134 /* Circular-Black.ttf */; };
-		F1856E401EAFE45A00EDA134 /* Circular-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1856E3C1EAFE45A00EDA134 /* Circular-Bold.ttf */; };
-		F1856E411EAFE45A00EDA134 /* Circular-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1856E3D1EAFE45A00EDA134 /* Circular-Book.ttf */; };
-		F1856E421EAFE45A00EDA134 /* Circular-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1856E3E1EAFE45A00EDA134 /* Circular-Medium.ttf */; };
+		F132C8791EB0705C00E9E899 /* Circular-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F132C8751EB0705C00E9E899 /* Circular-Black.ttf */; };
+		F132C87A1EB0705C00E9E899 /* Circular-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F132C8761EB0705C00E9E899 /* Circular-Bold.ttf */; };
+		F132C87B1EB0705C00E9E899 /* Circular-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F132C8771EB0705C00E9E899 /* Circular-Book.ttf */; };
+		F132C87C1EB0705C00E9E899 /* Circular-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F132C8781EB0705C00E9E899 /* Circular-Medium.ttf */; };
+		F132C87E1EB0707400E9E899 /* Food.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F132C87D1EB0707400E9E899 /* Food.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,10 +64,11 @@
 		F10227EB1E8206A9009D9A45 /* foodwhimUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = foodwhimUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10227EF1E8206A9009D9A45 /* foodwhimUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodwhimUITests.swift; sourceTree = "<group>"; };
 		F10227F11E8206A9009D9A45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1856E3B1EAFE45A00EDA134 /* Circular-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Circular-Black.ttf"; path = "../../../../Documents/FONTS/Circular/Circular-Black.ttf"; sourceTree = "<group>"; };
-		F1856E3C1EAFE45A00EDA134 /* Circular-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Circular-Bold.ttf"; path = "../../../../Documents/FONTS/Circular/Circular-Bold.ttf"; sourceTree = "<group>"; };
-		F1856E3D1EAFE45A00EDA134 /* Circular-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Circular-Book.ttf"; path = "../../../../Documents/FONTS/Circular/Circular-Book.ttf"; sourceTree = "<group>"; };
-		F1856E3E1EAFE45A00EDA134 /* Circular-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Circular-Medium.ttf"; path = "../../../../Documents/FONTS/Circular/Circular-Medium.ttf"; sourceTree = "<group>"; };
+		F132C8751EB0705C00E9E899 /* Circular-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular-Black.ttf"; sourceTree = "<group>"; };
+		F132C8761EB0705C00E9E899 /* Circular-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular-Bold.ttf"; sourceTree = "<group>"; };
+		F132C8771EB0705C00E9E899 /* Circular-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular-Book.ttf"; sourceTree = "<group>"; };
+		F132C8781EB0705C00E9E899 /* Circular-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular-Medium.ttf"; sourceTree = "<group>"; };
+		F132C87D1EB0707400E9E899 /* Food.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Food.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,10 +147,11 @@
 		F10227CE1E8206A8009D9A45 /* foodwhim */ = {
 			isa = PBXGroup;
 			children = (
-				F1856E3B1EAFE45A00EDA134 /* Circular-Black.ttf */,
-				F1856E3C1EAFE45A00EDA134 /* Circular-Bold.ttf */,
-				F1856E3D1EAFE45A00EDA134 /* Circular-Book.ttf */,
-				F1856E3E1EAFE45A00EDA134 /* Circular-Medium.ttf */,
+				F132C8751EB0705C00E9E899 /* Circular-Black.ttf */,
+				F132C8761EB0705C00E9E899 /* Circular-Bold.ttf */,
+				F132C8771EB0705C00E9E899 /* Circular-Book.ttf */,
+				F132C8781EB0705C00E9E899 /* Circular-Medium.ttf */,
+				F132C87D1EB0707400E9E899 /* Food.mp4 */,
 				F10227CF1E8206A8009D9A45 /* AppDelegate.swift */,
 				F10227D11E8206A8009D9A45 /* MainViewController.swift */,
 				F10227D31E8206A9009D9A45 /* Main.storyboard */,
@@ -297,12 +300,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F10227DA1E8206A9009D9A45 /* LaunchScreen.storyboard in Resources */,
-				F1856E3F1EAFE45A00EDA134 /* Circular-Black.ttf in Resources */,
-				F1856E411EAFE45A00EDA134 /* Circular-Book.ttf in Resources */,
-				F1856E421EAFE45A00EDA134 /* Circular-Medium.ttf in Resources */,
+				F132C8791EB0705C00E9E899 /* Circular-Black.ttf in Resources */,
+				F132C87B1EB0705C00E9E899 /* Circular-Book.ttf in Resources */,
+				F132C87C1EB0705C00E9E899 /* Circular-Medium.ttf in Resources */,
 				F10227D71E8206A9009D9A45 /* Assets.xcassets in Resources */,
 				F10227D51E8206A9009D9A45 /* Main.storyboard in Resources */,
-				F1856E401EAFE45A00EDA134 /* Circular-Bold.ttf in Resources */,
+				F132C87A1EB0705C00E9E899 /* Circular-Bold.ttf in Resources */,
+				F132C87E1EB0707400E9E899 /* Food.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
