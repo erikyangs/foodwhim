@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
     let appSecret = "HcCAjvHOhKIpSt0yh5qGh8zeAMpK6dTwKMFYWRVoeEvXwG25AOD4Gs31oHoNJJP8"
     var avPlayer: AVPlayer!
     var avPlayerLayer: AVPlayerLayer!
+    var yelpClient: YLPClient!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,25 +32,15 @@ class MainViewController: UIViewController {
         let greetingListRandomIndex = Int(arc4random_uniform(UInt32(greetingList.count)))
         greeting.text = greetingList[greetingListRandomIndex]
         
-        //YELP API
-        // Search for 3 dinner restaurants
-        let query = YLPQuery(location: "San Francisco, CA")
-        query.term = "dinner"
-        query.limit = 3
-        
-        YLPClient.authorize(withAppId: appId, secret: appSecret).flatMap { client in
-            client.search(withQuery: query)
-            }.onSuccess { search in
-                if let topBusiness = search.businesses.first {
-                    print("Top business: \(topBusiness.name), id: \(topBusiness.identifier)")
-                } else {
-                    print("No businesses found")
-                }
-                exit(EXIT_SUCCESS)
-            }.onFailure { error in
-                print("Search errored: \(error)")
-                exit(EXIT_FAILURE)
-        }
+        //YELP FUSION API
+        YLPClient.authorize(withAppId: appId, secret: appSecret,
+                            completionHandler: {(client: YLPClient?, error: Error?) -> Void in
+                                self.yelpClient = client!
+                                self.yelpClient.search(withLocation: "Berkeley, CA", completionHandler: {(search: YLPSearch?, error: Error?) -> Void in
+                                    print("search complete")
+                                    print(search!.businesses[0].name)
+                                    })
+                            })
     }
     
     func setupBackgroundVideo(){

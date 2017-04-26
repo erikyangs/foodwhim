@@ -7,7 +7,6 @@ target 'foodwhim' do
 
   # Pods for foodwhim
   pod 'YelpAPI'
-  pod 'BrightFutures'
 
   target 'foodwhimTests' do
     inherit! :search_paths
