@@ -21,6 +21,8 @@
 		F132C87B1EB0705C00E9E899 /* Circular-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F132C8771EB0705C00E9E899 /* Circular-Book.ttf */; };
 		F132C87C1EB0705C00E9E899 /* Circular-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F132C8781EB0705C00E9E899 /* Circular-Medium.ttf */; };
 		F132C87E1EB0707400E9E899 /* Food.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F132C87D1EB0707400E9E899 /* Food.mp4 */; };
+		F132C8861EB1517C00E9E899 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132C8851EB1517C00E9E899 /* ResultViewController.swift */; };
+		F132C8881EB1593100E9E899 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132C8871EB1593100E9E899 /* AppUtils.swift */; };
 		FA635DF01EA3B2A5ADF09964 /* Pods_foodwhimUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F285A86AA14CB60AD8981C /* Pods_foodwhimUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,8 @@
 		F132C8771EB0705C00E9E899 /* Circular-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular-Book.ttf"; sourceTree = "<group>"; };
 		F132C8781EB0705C00E9E899 /* Circular-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular-Medium.ttf"; sourceTree = "<group>"; };
 		F132C87D1EB0707400E9E899 /* Food.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Food.mp4; sourceTree = "<group>"; };
+		F132C8851EB1517C00E9E899 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		F132C8871EB1593100E9E899 /* AppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,8 +141,10 @@
 				F132C8821EB0786600E9E899 /* Resources */,
 				F10227CF1E8206A8009D9A45 /* AppDelegate.swift */,
 				F10227D11E8206A8009D9A45 /* MainViewController.swift */,
+				F132C8851EB1517C00E9E899 /* ResultViewController.swift */,
 				F10227D31E8206A9009D9A45 /* Main.storyboard */,
 				F10227D61E8206A9009D9A45 /* Assets.xcassets */,
+				F132C8871EB1593100E9E899 /* AppUtils.swift */,
 				F10227D81E8206A9009D9A45 /* LaunchScreen.storyboard */,
 				F10227DB1E8206A9009D9A45 /* Info.plist */,
 			);
@@ -477,8 +483,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F132C8861EB1517C00E9E899 /* ResultViewController.swift in Sources */,
 				F10227D21E8206A8009D9A45 /* MainViewController.swift in Sources */,
 				F10227D01E8206A8009D9A45 /* AppDelegate.swift in Sources */,
+				F132C8881EB1593100E9E899 /* AppUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

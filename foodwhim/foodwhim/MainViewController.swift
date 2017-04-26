@@ -94,21 +94,20 @@ class MainViewController: UIViewController {
         avPlayer.pause()
     }
     
-    //random array id helper method
-    func randomArrayId(input: Int) -> Int{
-        return Int(arc4random_uniform(UInt32(input)))
-    }
-    
     //SUGGEST BUTTON PRESS
     @IBAction func pressedSuggestButton(_ sender: UIButton) {
         if(isYelpClientReady){
-            self.yelpClient.search(withLocation: "Berkeley, CA", completionHandler: {(search: YLPSearch?, error: Error?) -> Void in
-                print("Search complete")
-                let randomBusinessId = self.randomArrayId(input: search!.businesses.count)
-                print(search!.businesses[randomBusinessId].name)
-                //segue needs fixing
-                self.performSegue(withIdentifier: "segueToResult", sender: nil)
-            })
+            self.performSegue(withIdentifier: "segueToResult", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let segueIdentifier = segue.identifier
+        print("Preparing for segue: ", segueIdentifier!)
+        if (segueIdentifier == "segueToResult"){
+            if let dest = segue.destination as? ResultViewController{
+                dest.yelpClient = self.yelpClient
+            }
         }
     }
 }
