@@ -1,9 +1,7 @@
 PODS:
-  - OAuthSwift (0.5.2)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - OAuthSwift (~> 0.5.0)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
@@ -16,9 +14,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  OAuthSwift: 1ef042d4362e755e24a78f158d817245641a5d24
   SwiftyJSON: 05cf0e98a950e2ba343735264f5a96b81e755d00
 
-PODFILE CHECKSUM: adffd26febe71dcf6c15e51edabfabd00944704f
+PODFILE CHECKSUM: 805ff81ed8350e0301a4059f1cd94b2b903ac1b1
 
 COCOAPODS: 1.2.1

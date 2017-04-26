@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>OAuthSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-foodwhim.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -31,6 +26,27 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>0D1C2C2D2F87BB811F0BF3710D1C0A9C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>847E30055427DAD42FA70FD91EBE7E33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BA7D103B25674100A048F2BF16EF4184</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C5C280A3EBEA3ADB173501E3CC6DA54E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

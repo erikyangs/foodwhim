@@ -7,7 +7,6 @@ target 'foodwhim' do
 
   # Pods for foodwhim
   pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
-  pod "OAuthSwift", "~> 0.5.0"
 
   target 'foodwhimTests' do
     inherit! :search_paths
