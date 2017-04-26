@@ -21,8 +21,6 @@ Open the **.xcworkspace** file in XCode and run.
 
 ## Libraries, APIs, and more
 * Yelp Fusion API
-* OAuthSwift
-* SwiftyJSON
 
 ## Troubleshooting (mostly for us developers to keep track of links)
 When adding/removing pods, you need to do the following. For reference: [Walkthrough from StackOverflow](http://stackoverflow.com/questions/13751147/remove-or-uninstall-library-previously-added-cocoapods)
