@@ -20,8 +20,8 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         print("Loaded MainViewController")
         
-        // find background
-        let background = self.view.viewWithTag(-1)
+        // Find UIImageView background (used in place of background video if it doesn't work)
+        let background = self.view.viewWithTag(-1) //tag set to -1 in storyboard
         
         //BLACK TRANSPARENCY LAYER
         // get your window screen size
@@ -48,6 +48,12 @@ class MainViewController: UIViewController {
                                                selector: #selector(playerItemDidReachEnd(notification:)),
                                                name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
                                                object: avPlayer.currentItem)
+        
+        //GREETING TEXT
+        let greeting = self.view.viewWithTag(1) as! UILabel
+        var greetingList = ["Welcome Back.", "Hungry?", "Be Decisive Today.", "Welcome to FoodWhim."]
+        let greetingListRandomIndex = Int(arc4random_uniform(UInt32(greetingList.count)))
+        greeting.text = greetingList[greetingListRandomIndex]
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,6 +75,11 @@ class MainViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         avPlayer.pause()
+    }
+    
+    //SUGGEST BUTTON PRESS
+    @IBAction func pressedSuggestButton(_ sender: UIButton) {
+        print("mmm")
     }
 }
 

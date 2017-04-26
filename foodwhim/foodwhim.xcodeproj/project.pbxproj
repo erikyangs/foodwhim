@@ -147,11 +147,7 @@
 		F10227CE1E8206A8009D9A45 /* foodwhim */ = {
 			isa = PBXGroup;
 			children = (
-				F132C8751EB0705C00E9E899 /* Circular-Black.ttf */,
-				F132C8761EB0705C00E9E899 /* Circular-Bold.ttf */,
-				F132C8771EB0705C00E9E899 /* Circular-Book.ttf */,
-				F132C8781EB0705C00E9E899 /* Circular-Medium.ttf */,
-				F132C87D1EB0707400E9E899 /* Food.mp4 */,
+				F132C8821EB0786600E9E899 /* Resources */,
 				F10227CF1E8206A8009D9A45 /* AppDelegate.swift */,
 				F10227D11E8206A8009D9A45 /* MainViewController.swift */,
 				F10227D31E8206A9009D9A45 /* Main.storyboard */,
@@ -178,6 +174,18 @@
 				F10227F11E8206A9009D9A45 /* Info.plist */,
 			);
 			path = foodwhimUITests;
+			sourceTree = "<group>";
+		};
+		F132C8821EB0786600E9E899 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F132C8751EB0705C00E9E899 /* Circular-Black.ttf */,
+				F132C8761EB0705C00E9E899 /* Circular-Bold.ttf */,
+				F132C8771EB0705C00E9E899 /* Circular-Book.ttf */,
+				F132C8781EB0705C00E9E899 /* Circular-Medium.ttf */,
+				F132C87D1EB0707400E9E899 /* Food.mp4 */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
