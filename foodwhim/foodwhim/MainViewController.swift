@@ -17,8 +17,8 @@ class MainViewController: UIViewController {
     let appSecret = "HcCAjvHOhKIpSt0yh5qGh8zeAMpK6dTwKMFYWRVoeEvXwG25AOD4Gs31oHoNJJP8"
     var avPlayer: AVPlayer!
     var avPlayerLayer: AVPlayerLayer!
-    var isYelpClientReady:Bool = false
     var yelpClient: YLPClient!
+    var isYelpClientLoaded: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,18 +34,49 @@ class MainViewController: UIViewController {
         greeting.text = greetingList[greetingListRandomIndex]
         
         //YELP FUSION API
+        authorizeYelp()
+    }
+    
+    func authorizeYelp() -> Void{
+        //YELP FUSION API
         YLPClient.authorize(withAppId: appId, secret: appSecret,
                             completionHandler: {(client: YLPClient?, error: Error?) -> Void in
-                                self.yelpClient = client!
-                                self.isYelpClientReady = true
-                                print("Yelp API authorized for app")
-                            })
+                                if(error==nil){
+                                    self.yelpClient = client!
+                                    print("Yelp API authorized for app")
+                                    self.isYelpClientLoaded = true
+                                }
+                                else{
+                                    let msg = String(describing: error!.localizedDescription)
+                                    showAlert(viewController: self, alertTitle: "Error", alertMessage: msg, alertButtonText: "OK")
+                                }
+        })
     }
+    
+    func authorizeYelpWithSegue() -> Void{
+        //YELP FUSION API
+        YLPClient.authorize(withAppId: appId, secret: appSecret,
+                            completionHandler: {(client: YLPClient?, error: Error?) -> Void in
+                                if(error==nil){
+                                    self.yelpClient = client!
+                                    print("Yelp API authorized for app")
+                                    self.isYelpClientLoaded = true
+                                    self.performSegue(withIdentifier: "segueToResult", sender: nil)
+                                }
+                                else{
+                                    let msg = String(describing: error!.localizedDescription)
+                                    print("Error: ", msg)
+                                    showAlert(viewController: self, alertTitle: "Error", alertMessage: msg, alertButtonText: "OK")
+                                }
+        })
+    }
+
     
     func setupBackgroundVideo(){
         // Find UIImageView background (used in place of background video if it doesn't work)
         let background = self.view.viewWithTag(-1) //tag set to -1 in storyboard
         
+        /*
         //BLACK TRANSPARENCY LAYER
         // get your window screen size
         let screenSize: CGRect = UIScreen.main.bounds
@@ -56,6 +87,7 @@ class MainViewController: UIViewController {
         // add this new view to your main view
         self.view.addSubview(overlay)
         self.view.insertSubview(overlay, aboveSubview: background!)
+        */
         
         //VIDEO LAYER
         //Credits to: (http://stackoverflow.com/questions/32888378/adding-a-video-background-to-ios-app-signup-like-instagram-and-vine)
@@ -94,10 +126,15 @@ class MainViewController: UIViewController {
         avPlayer.pause()
     }
     
+    
+    
     //SUGGEST BUTTON PRESS
     @IBAction func pressedSuggestButton(_ sender: UIButton) {
-        if(isYelpClientReady){
+        if(isYelpClientLoaded){
             self.performSegue(withIdentifier: "segueToResult", sender: nil)
+        }
+        else{
+            authorizeYelpWithSegue()
         }
     }
     
