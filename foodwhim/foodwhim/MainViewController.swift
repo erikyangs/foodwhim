@@ -10,8 +10,9 @@ import UIKit
 import QuartzCore
 import AVFoundation
 import YelpAPI
+import CoreLocation
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, CLLocationManagerDelegate {
     //FIELDS
     let appId = "lQwRGkdMNvY6e_Zo1RSDVQ"
     let appSecret = "HcCAjvHOhKIpSt0yh5qGh8zeAMpK6dTwKMFYWRVoeEvXwG25AOD4Gs31oHoNJJP8"
@@ -19,6 +20,8 @@ class MainViewController: UIViewController {
     var avPlayerLayer: AVPlayerLayer!
     var yelpClient: YLPClient!
     var isYelpClientLoaded: Bool = false
+    let locationManager = CLLocationManager()
+    var searchLocation: (latitude: Double, longitude: Double) = defaultCoordinate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,8 @@ class MainViewController: UIViewController {
         print("Loaded MainViewController")
         
         setupBackgroundVideo()
+        NotificationCenter.default.addObserver(self, selector:#selector(MainViewController.viewWillEnterForeground), name:
+            NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         
         //GREETING TEXT
         let greeting = self.view.viewWithTag(1) as! UILabel
@@ -35,10 +40,26 @@ class MainViewController: UIViewController {
         
         //YELP FUSION API
         authorizeYelp()
+        
+        //LOCATION
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
     }
     
+    //LOCATION
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0]
+        let lat = userLocation.coordinate.latitude;
+        let long = userLocation.coordinate.longitude;
+        searchLocation = (lat, long)
+    }
+    
+    //YELP FUSION API
     func authorizeYelp() -> Void{
-        //YELP FUSION API
         YLPClient.authorize(withAppId: appId, secret: appSecret,
                             completionHandler: {(client: YLPClient?, error: Error?) -> Void in
                                 if(error==nil){
@@ -53,8 +74,8 @@ class MainViewController: UIViewController {
         })
     }
     
+    //YELP FUSION API
     func authorizeYelpWithSegue() -> Void{
-        //YELP FUSION API
         YLPClient.authorize(withAppId: appId, secret: appSecret,
                             completionHandler: {(client: YLPClient?, error: Error?) -> Void in
                                 if(error==nil){
@@ -71,7 +92,7 @@ class MainViewController: UIViewController {
         })
     }
 
-    
+    //BACKGROUND VIDEO
     func setupBackgroundVideo(){
         // Find UIImageView background (used in place of background video if it doesn't work)
         let background = self.view.viewWithTag(-1) //tag set to -1 in storyboard
@@ -126,6 +147,19 @@ class MainViewController: UIViewController {
         avPlayer.pause()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+    }
+    
+    func viewWillEnterForeground() -> Void{
+        avPlayer.play()
+    }
     
     
     //SUGGEST BUTTON PRESS
@@ -144,6 +178,7 @@ class MainViewController: UIViewController {
         if (segueIdentifier == "segueToResult"){
             if let dest = segue.destination as? ResultViewController{
                 dest.yelpClient = self.yelpClient
+                dest.searchLocation = searchLocation
             }
         }
     }

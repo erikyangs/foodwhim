@@ -35,7 +35,7 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khz-2s-3bZ">
                                 <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to FoodWhim." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="qvn-Os-kjH">
                                 <rect key="frame" x="16" y="172" width="343" height="126.5"/>
@@ -109,7 +109,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="kGH-8Q-nBo" firstAttribute="top" relation="greaterThanOrEqual" secondItem="O1a-hR-NN3" secondAttribute="top" constant="30" id="0G0-xn-mGx"/>
                                     <constraint firstAttribute="height" constant="160" id="MSB-va-Dpi"/>
@@ -122,35 +122,75 @@
                                 <rect key="frame" x="16" y="160" width="343" height="417"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="headingTableViewCell" id="PVk-15-DnN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="headingTableViewCell" id="PVk-15-DnN" customClass="HeadingTableViewCell" customModule="foodwhim" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PVk-15-DnN" id="7Ag-4K-B9r">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heading Default Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6I-Pf-TBu">
+                                                    <rect key="frame" x="18" y="-2" width="307" height="47.5"/>
+                                                    <fontDescription key="fontDescription" name="CircularTT-Book" family="Circular TT" pointSize="17"/>
+                                                    <color key="textColor" red="0.84705882352941175" green="0.10588235294117647" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="P6I-Pf-TBu" secondAttribute="bottom" constant="-10" id="4dU-rC-zqa"/>
+                                                <constraint firstItem="P6I-Pf-TBu" firstAttribute="leading" secondItem="7Ag-4K-B9r" secondAttribute="leadingMargin" constant="10" id="OFI-lZ-wig"/>
+                                                <constraint firstItem="P6I-Pf-TBu" firstAttribute="top" secondItem="7Ag-4K-B9r" secondAttribute="topMargin" constant="-10" id="TP2-PG-jJA"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="P6I-Pf-TBu" secondAttribute="trailing" constant="10" id="wAl-HM-GEJ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="headingUILabel" destination="P6I-Pf-TBu" id="SCz-QY-q2z"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="paddingTableViewCell" id="zUx-2b-BF0">
+                                        <rect key="frame" x="0.0" y="72" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zUx-2b-BF0" id="Lib-r8-cvM">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQ9-S4-YGC">
+                                                    <rect key="frame" x="8" y="8" width="327" height="27.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="tQ9-S4-YGC" firstAttribute="top" secondItem="Lib-r8-cvM" secondAttribute="topMargin" id="KJf-0v-kTO"/>
+                                                <constraint firstItem="tQ9-S4-YGC" firstAttribute="leading" secondItem="Lib-r8-cvM" secondAttribute="leadingMargin" id="LoE-hl-p9I"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="tQ9-S4-YGC" secondAttribute="bottom" id="pQu-qm-JKx"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="tQ9-S4-YGC" secondAttribute="trailing" id="xKT-cC-iV6"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contentTableViewCell" rowHeight="93" id="vVa-cE-o44">
-                                        <rect key="frame" x="0.0" y="72" width="343" height="93"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contentTableViewCell" rowHeight="93" id="vVa-cE-o44" customClass="ContentTableViewCell" customModule="foodwhim" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="116" width="343" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vVa-cE-o44" id="yjD-me-cgh">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="92.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Default Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffx-is-TSq">
-                                                    <rect key="frame" x="18" y="18" width="307" height="56.5"/>
-                                                    <fontDescription key="fontDescription" name="CircularTT-Book" family="Circular TT" pointSize="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content Default Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffx-is-TSq">
+                                                    <rect key="frame" x="18" y="3" width="307" height="86.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ffx-is-TSq" firstAttribute="leading" secondItem="yjD-me-cgh" secondAttribute="leadingMargin" constant="10" id="WCA-0m-1Kp"/>
-                                                <constraint firstItem="ffx-is-TSq" firstAttribute="top" secondItem="yjD-me-cgh" secondAttribute="topMargin" constant="10" id="XPP-hf-C4Y"/>
+                                                <constraint firstItem="ffx-is-TSq" firstAttribute="top" secondItem="yjD-me-cgh" secondAttribute="topMargin" constant="-5" id="XPP-hf-C4Y"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ffx-is-TSq" secondAttribute="trailing" constant="10" id="ZQN-ff-oHu"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ffx-is-TSq" secondAttribute="bottom" constant="10" id="sm4-6H-jwi"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ffx-is-TSq" secondAttribute="bottom" constant="-5" id="sm4-6H-jwi"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentUILabel" destination="ffx-is-TSq" id="W3S-kS-zdu"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -188,6 +228,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="headerBackgroundUIImageView" destination="Gbh-gq-o34" id="8Dc-Zd-epx"/>
                         <outlet property="infoTableView" destination="XEM-qT-6dF" id="DFO-X1-fta"/>
                         <outlet property="restaurantNameUILabel" destination="kGH-8Q-nBo" id="pKI-A8-9ge"/>
                     </connections>
