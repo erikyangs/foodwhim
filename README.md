@@ -17,7 +17,10 @@ pod install
 Open the **.xcworkspace** file in XCode and run.
 
 ## Features
-* Finds food based on preferences
+* Displays food around current GPS location
+* Provides basic business info and reviews
+* Search radius setting
+* Search term setting
 
 ## Libraries, APIs, and more
 * Yelp Fusion API (CocoaPod)
