@@ -4,6 +4,8 @@
 ## Overview
 For indecisive people. Tells you **exactly** what to eat.
 
+<img src=https://github.com/erikyangs/foodwhim/blob/master/homescreen.jpg width="33%"><img src=https://github.com/erikyangs/foodwhim/blob/master/resultscreen.jpg width="33%"><img src=https://github.com/erikyangs/foodwhim/blob/master/settingscreen.jpg width="33%">
+
 ## Setup
 Make sure you have CocoaPods installed. For reference: [Walkthrough From StackOverflow](http://stackoverflow.com/questions/20755044/how-to-install-cocoa-pods)
 ~~~~
