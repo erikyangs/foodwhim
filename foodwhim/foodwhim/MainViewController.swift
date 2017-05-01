@@ -186,5 +186,13 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
+    
+    @IBAction func settingsButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueToSettingsFromMain", sender: nil)
+    }
+    
+    //UNWIND SEGUE
+    @IBAction func unwindToResult(segue: UIStoryboardSegue){
+    }
 }
 

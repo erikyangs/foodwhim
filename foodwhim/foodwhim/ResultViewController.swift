@@ -17,6 +17,7 @@
  Format Phone Number
  Pictures
  Preferences/Settings
+ Price
  */
 
 import UIKit
@@ -45,6 +46,8 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         infoTableView.tableFooterView = UIView()
         infoTableView.separatorStyle = .none
         infoTableView.reloadData()
+        
+        disableNewEntryButton()
         
         //LOCATION
         self.locationManager.requestWhenInUseAuthorization()
@@ -94,8 +97,8 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         let queryCoordinate = YLPCoordinate(latitude: searchLocation.latitude, longitude: searchLocation.longitude)
         let query = YLPQuery(coordinate: queryCoordinate)
         query.limit = 50
-        query.radiusFilter = 300
-        query.term = "Food"
+        query.radiusFilter = currentSearchDistanceSetting
+        query.term = currentSearchTermSetting
         
         self.yelpClient.search(with: query, completionHandler: {(search: YLPSearch?, error: Error?) -> Void in
             if(error == nil){
@@ -118,6 +121,11 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
                     }
                 }
                 
+                //OVERALL REVIEWS
+                self.businessInfo.append(["heading", "Rating"])
+                self.businessInfo.append(["total-reviews", String(business.rating), String(business.reviewCount)])
+                self.businessInfo.append(["padding-sm"])
+                
                 //ADDRESS
                 if (business.location.address.count > 0){
                     if let lat=business.location.coordinate?.latitude, let lon=business.location.coordinate?.longitude{
@@ -137,11 +145,6 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
                     self.businessInfo.append(["content", "phone", businessPhone])
                     self.businessInfo.append(["padding"])
                 }
-                
-                //OVERALL REVIEWS
-                self.businessInfo.append(["heading", "Rating"])
-                self.businessInfo.append(["total-reviews", String(business.rating), String(business.reviewCount)])
-                self.businessInfo.append(["padding"])
                     
                 //SEARCH FOR INDIVIDUAL REVIEWS
                 self.searchReviews(business: business)
@@ -149,9 +152,36 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
                 //RELOAD TABLE DATA
                 DispatchQueue.main.async {
                     self.infoTableView.reloadData()
+                    //self.enableNewEntryButton()
                 }
                 
                 print("Search complete")
+            }
+            else{
+                let msg = String(describing: error!.localizedDescription)
+                print("Error: ", msg)
+                showAlert(viewController: self, alertTitle: "Error", alertMessage: msg, alertButtonText: "OK")
+                DispatchQueue.main.async {
+                    self.enableNewEntryButton()
+                }
+            }
+        })
+    }
+    
+    func searchBusiness(business: YLPBusiness)->Void{
+        self.yelpClient.business(withId: business.identifier, completionHandler: {(yelpBusiness:YLPBusiness?, error:Error?) -> Void in
+            if(error == nil){
+                if let imgURL = yelpBusiness?.imageURL?.absoluteString{
+                    self.businessInfo.append(["heading", "Selected Photos"])
+                    self.businessInfo.append(["image", imgURL])
+                    self.businessInfo.append(["padding"])
+                }
+                
+                //RELOAD TABLE DATA
+                DispatchQueue.main.async {
+                    self.infoTableView.reloadData()
+                    self.enableNewEntryButton()
+                }
             }
             else{
                 let msg = String(describing: error!.localizedDescription)
@@ -178,11 +208,15 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
                         self.businessInfo.append(["review", review.user.name, String(review.rating), review.excerpt])
                     }
                 }
+                self.businessInfo.append(["padding-sm"])
+                
+                //SEARCH WITH YELP BUSINESS API
+                self.searchBusiness(business: business)
                 
                 //RELOAD TABLE DATA
                 DispatchQueue.main.async {
                     self.infoTableView.reloadData()
-                    self.enableNewEntryButton()
+                    //self.enableNewEntryButton()
                 }
             }
             else{
@@ -280,7 +314,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
             //cell.layer.borderWidth = 1.0
             //cell.layer.borderColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1).cgColor
             //cell.contentView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
-            //cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         }
         else if(cellInfo[0] == "total-reviews"){
@@ -289,6 +323,13 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
             cell.numReviewsUILabel.text = cellInfo[cellInfo.count-1] + " Reviews"
             cell.ratingUIImageView.image = doubleToRatingImage(rating: Double(cellInfo[cellInfo.count-2])!)
             
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            return cell
+        }
+        else if (cellInfo[0] == "image"){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "imageTableViewCell",
+                                                     for: indexPath) as! ImageTableViewCell
+            downloadImage(imageView: cell.firstUIImage, url: URL(string: cellInfo[1])!)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         }
@@ -321,6 +362,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    //NEW SEARCH BUTTON
     @IBAction func newEntryButtonPressed(_ sender: UIButton) {
         disableNewEntryButton()
         search()
@@ -336,5 +378,14 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         newEntryButton.isEnabled = false
         let textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
         newEntryButton.setTitleColor(textColor, for: UIControlState.normal)
+    }
+    
+    //SETTINGS BUTTON
+    @IBAction func settingsButtonPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "segueToSettings", sender: nil)
+    }
+    
+    //UNWIND SEGUE
+    @IBAction func unwindToResult(segue: UIStoryboardSegue){
     }
 }

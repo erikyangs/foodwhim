@@ -12,6 +12,16 @@ import UIKit
 //FIELDS
 let defaultCoordinate: (latitude: Double, longitude: Double) = (37.773249, -122.418923)
 
+//Search Distance Settings
+let walkingSetting:Double = 300 //tested out based on personal experience
+let bikingSetting:Double = 5000 //around 3 miles; 10 miles for each hr of cycling
+let drivingSetting:Double = 20000 //around 13 miles; 40 miles each hr of driving
+var currentSearchDistanceSetting:Double = walkingSetting
+
+//Search Term Settings
+let searchDefaultSetting:String = "Food"
+var currentSearchTermSetting:String = searchDefaultSetting
+
 //random array id helper method
 func randomArrayId(input: Int) -> Int{
     return Int(arc4random_uniform(UInt32(input)))
