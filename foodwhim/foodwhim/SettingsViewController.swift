@@ -103,6 +103,9 @@ class SettingsViewController: UIViewController{
         if(searchTermUITextField.text != nil && searchTermUITextField.text != ""){
             currentSearchTermSetting = searchTermUITextField.text!
         }
+        else if(searchTermUITextField.text == ""){
+            currentSearchTermSetting = searchDefaultSetting
+        }
         
         performSegue(withIdentifier: "unwindToResultSegue", sender: nil)
     }

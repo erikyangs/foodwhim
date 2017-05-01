@@ -393,6 +393,7 @@
                         <outlet property="infoTableView" destination="XEM-qT-6dF" id="DFO-X1-fta"/>
                         <outlet property="newEntryButton" destination="VX4-cS-Gw7" id="P8S-Ll-SKS"/>
                         <outlet property="restaurantNameUILabel" destination="kGH-8Q-nBo" id="pKI-A8-9ge"/>
+                        <outlet property="settingsButton" destination="zNU-tZ-xOr" id="NyW-Br-hlN"/>
                         <segue destination="ZYb-xc-Glk" kind="show" identifier="segueToSettings" id="OEd-bp-BfT"/>
                     </connections>
                 </viewController>
@@ -413,25 +414,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHz-es-K5F">
-                                <rect key="frame" x="26" y="135" width="323" height="57"/>
+                                <rect key="frame" x="26" y="135.5" width="323" height="57"/>
                                 <fontDescription key="fontDescription" name="CircularTT-Medium" family="Circular TT" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFU-bb-Q5J">
-                                <rect key="frame" x="28" y="207" width="321" height="25.5"/>
+                                <rect key="frame" x="28" y="207.5" width="321" height="25.5"/>
                                 <fontDescription key="fontDescription" name="CircularTT-Book" family="Circular TT" pointSize="20"/>
                                 <color key="textColor" red="0.84705882352941175" green="0.10588235294117647" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Term" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qbd-Xz-69a">
-                                <rect key="frame" x="28" y="307.5" width="321" height="25.5"/>
+                                <rect key="frame" x="28" y="308" width="321" height="25.5"/>
                                 <fontDescription key="fontDescription" name="CircularTT-Book" family="Circular TT" pointSize="20"/>
                                 <color key="textColor" red="0.84705882349999995" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIk-tZ-BKx">
-                                <rect key="frame" x="28" y="237.5" width="107" height="40"/>
+                                <rect key="frame" x="28" y="238" width="107" height="40"/>
                                 <color key="backgroundColor" red="0.84705882352941175" green="0.10588235294117647" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="pXY-jC-LQA"/>
@@ -445,7 +446,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0KI-SE-FYq">
-                                <rect key="frame" x="135" y="237" width="107" height="40"/>
+                                <rect key="frame" x="135" y="237.5" width="107" height="40"/>
                                 <color key="backgroundColor" red="0.84705882352941175" green="0.10588235294117647" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="CircularTT-Book" family="Circular TT" pointSize="17"/>
                                 <state key="normal" title="Biking">
@@ -456,7 +457,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSh-Kb-EnG">
-                                <rect key="frame" x="242" y="237" width="107" height="40"/>
+                                <rect key="frame" x="242" y="237.5" width="107" height="40"/>
                                 <color key="backgroundColor" red="0.84705882352941175" green="0.10588235294117647" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="CircularTT-Book" family="Circular TT" pointSize="17"/>
                                 <state key="normal" title="Driving">
@@ -467,7 +468,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyh-Rp-mEB">
-                                <rect key="frame" x="28" y="398" width="321" height="50"/>
+                                <rect key="frame" x="28" y="398.5" width="321" height="50"/>
                                 <color key="backgroundColor" red="0.84705882349999995" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6Dg-y3-gn3"/>
@@ -481,7 +482,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Search Keywords" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="V3i-Zy-A6L">
-                                <rect key="frame" x="28" y="338" width="321" height="30"/>
+                                <rect key="frame" x="28" y="338.5" width="321" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="CircularTT-Book" family="Circular TT" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -539,6 +540,6 @@
         <image name="emptystars" width="1341" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l44-YC-e9Y"/>
+        <segue reference="OEd-bp-BfT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -75,6 +75,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidAppear(animated)
         infoTableView.reloadData()
         
+        disableNewEntryButton()
         search()
     }
     
@@ -107,8 +108,10 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
                 //No business found for query
                 if (search!.businesses.count == 0){
                     self.updateRestaurantNameUILabel(name: "No Businesses Found with Current Settings")
-                    self.headerBackgroundUIImageView.image = UIImage(named: "Wood")
-                    self.enableNewEntryButton()
+                    DispatchQueue.main.async {
+                        self.headerBackgroundUIImageView.image = UIImage(named: "Wood")
+                        self.enableNewEntryButton()
+                    }
                     return
                 }
                 
@@ -378,22 +381,27 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     @IBOutlet weak var newEntryButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     func enableNewEntryButton()->Void{
         newEntryButton.isEnabled = true
         let textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         newEntryButton.setTitleColor(textColor, for: UIControlState.normal)
+        
+        settingsButton.isEnabled = true
+        settingsButton.alpha = 1
     }
     func disableNewEntryButton()->Void{
         newEntryButton.isEnabled = false
         let textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
         newEntryButton.setTitleColor(textColor, for: UIControlState.normal)
+        
+        settingsButton.isEnabled = false
+        settingsButton.alpha = 0.5
     }
     
     //SETTINGS BUTTON
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
         updateRestaurantNameUILabel(name: "Searching for food...")
-        businessInfo = []
-        infoTableView.reloadData()
         self.performSegue(withIdentifier: "segueToSettings", sender: nil)
     }
     
