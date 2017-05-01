@@ -103,6 +103,15 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         self.yelpClient.search(with: query, completionHandler: {(search: YLPSearch?, error: Error?) -> Void in
             if(error == nil){
                 print("Search success")
+                
+                //No business found for query
+                if (search!.businesses.count == 0){
+                    self.updateRestaurantNameUILabel(name: "No Businesses Found with Current Settings")
+                    self.headerBackgroundUIImageView.image = UIImage(named: "Wood")
+                    self.enableNewEntryButton()
+                    return
+                }
+                
                 let randomBusinessId = randomArrayId(input: search!.businesses.count)
                 print("Number of businesses found: ", search!.businesses.count)
                 let business = search!.businesses[randomBusinessId]
