@@ -52,14 +52,14 @@ func callNumber(phoneNumber:String) {
 }
 
 func openAddressInGoogleMaps(query:String="", coordinate:(String, String)){
-    let formattedQuery = query.replacingOccurrences(of: " ", with: "%20").folding(locale: .current)
+    let formattedQuery = query.replacingOccurrences(of: " ", with: "%20").folding(options: [.diacriticInsensitive, .widthInsensitive, .caseInsensitive], locale: nil)
     if let addressURL = URL(string: "comgooglemaps://?q=\(formattedQuery)&center=\(coordinate.0),\(coordinate.1)"){
         openURL(url: addressURL)
     }
 }
 
 func openAddressInAppleMaps(query:String="", coordinate:(String, String)){
-    let formattedQuery = query.replacingOccurrences(of: " ", with: "+").folding(locale: .current)
+    let formattedQuery = query.replacingOccurrences(of: " ", with: "+").folding(options: [.diacriticInsensitive, .widthInsensitive, .caseInsensitive], locale: nil)
     if let addressURL = URL(string: "http://maps.apple.com/?q=\(formattedQuery)&sll=\(coordinate.0),\(coordinate.1)&z=10"){
         openURL(url: addressURL)
     }

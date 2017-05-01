@@ -28,9 +28,13 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         print("Loaded MainViewController")
         
+        //BACKGROUND VIDEO
         setupBackgroundVideo()
         NotificationCenter.default.addObserver(self, selector:#selector(MainViewController.viewWillEnterForeground), name:
             NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        let audioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setCategory(AVAudioSessionCategoryAmbient,
+                                      with: AVAudioSessionCategoryOptions.mixWithOthers)
         
         //GREETING TEXT
         let greeting = self.view.viewWithTag(1) as! UILabel

@@ -5,6 +5,19 @@
 //  Created by Erik Yang on 4/26/17.
 //  Copyright © 2017 Erik Yang. All rights reserved.
 //
+/*
+ TODO:
+ Search Considers:
+    What is open
+    Price point
+    Time of day/meal
+    Number of Reviews
+    Distance
+ URL link to actual review
+ Format Phone Number
+ Pictures
+ Preferences/Settings
+ */
 
 import UIKit
 import Foundation
@@ -72,14 +85,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
     }
     
-    
-    /* Considers (ideas):
-     What is open
-     Price point
-     Time of day/meal
-     Number of Reviews
-     Distance
-     */
+    //SEARCH
     func search()->Void{
         updateRestaurantNameUILabel(name: "Searching for food...")
         businessInfo = []
@@ -97,9 +103,12 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
                 let randomBusinessId = randomArrayId(input: search!.businesses.count)
                 print("Number of businesses found: ", search!.businesses.count)
                 let business = search!.businesses[randomBusinessId]
+                
+                //BUSINESS NAME
                 print(business.name)
                 self.updateRestaurantNameUILabel(name: business.name)
                 
+                //BG IMAGE
                 if let businessImageUrl = business.imageURL {
                     downloadImage(imageView: self.headerBackgroundUIImageView, url: businessImageUrl)
                 }
@@ -109,6 +118,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
                     }
                 }
                 
+                //ADDRESS
                 if (business.location.address.count > 0){
                     if let lat=business.location.coordinate?.latitude, let lon=business.location.coordinate?.longitude{
                         let businessAddress = business.location.address[0] + ", " + business.location.city + ", " + business.location.stateCode + ", " + business.location.postalCode
@@ -119,6 +129,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
                     }
                 }
                 
+                //PHONE
                 if let tempPhoneVar = business.phone{
                     let businessPhone = tempPhoneVar.replacingOccurrences(of: "+", with: "")
                     print(businessPhone)
@@ -127,6 +138,15 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
                     self.businessInfo.append(["padding"])
                 }
                 
+                //OVERALL REVIEWS
+                self.businessInfo.append(["heading", "Rating"])
+                self.businessInfo.append(["total-reviews", String(business.rating), String(business.reviewCount)])
+                self.businessInfo.append(["padding"])
+                    
+                //SEARCH FOR INDIVIDUAL REVIEWS
+                self.searchReviews(business: business)
+                
+                //RELOAD TABLE DATA
                 DispatchQueue.main.async {
                     self.infoTableView.reloadData()
                 }
@@ -137,6 +157,41 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
                 let msg = String(describing: error!.localizedDescription)
                 print("Error: ", msg)
                 showAlert(viewController: self, alertTitle: "Error", alertMessage: msg, alertButtonText: "OK")
+                DispatchQueue.main.async {
+                    self.enableNewEntryButton()
+                }
+            }
+        })
+    }
+    
+    func searchReviews(business: YLPBusiness)->Void{
+        //REVIEWS
+        self.yelpClient.reviewsForBusiness(withId: business.identifier, completionHandler: {(yelpReviews: YLPBusinessReviews?, error:Error?) -> Void in
+            if(error == nil){
+                self.businessInfo.append(["heading", "Selected Reviews"])
+                let reviews = yelpReviews?.reviews
+                for review in reviews!{
+                    if let imgURL = review.user.imageURL?.absoluteString{
+                        self.businessInfo.append(["review", imgURL, review.user.name, String(review.rating), review.excerpt])
+                    }
+                    else{
+                        self.businessInfo.append(["review", review.user.name, String(review.rating), review.excerpt])
+                    }
+                }
+                
+                //RELOAD TABLE DATA
+                DispatchQueue.main.async {
+                    self.infoTableView.reloadData()
+                    self.enableNewEntryButton()
+                }
+            }
+            else{
+                let msg = String(describing: error!.localizedDescription)
+                print("Error: ", msg)
+                showAlert(viewController: self, alertTitle: "Error", alertMessage: msg, alertButtonText: "OK")
+                DispatchQueue.main.async {
+                    self.enableNewEntryButton()
+                }
             }
         })
     }
@@ -144,6 +199,46 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
     func updateRestaurantNameUILabel(name: String){
         DispatchQueue.main.async {
             self.restaurantNameUILabel.text = name
+        }
+    }
+    
+    //Convert double to appropriate rating image
+    func doubleToRatingImage(rating: Double) -> UIImage{
+        if(rating==0){
+            return UIImage(named: "0stars")!
+        }
+        else if (rating==0.5){
+            return UIImage(named: "0-5stars")!
+        }
+        else if (rating==1){
+            return UIImage(named: "1stars")!
+        }
+        else if (rating==1.5){
+            return UIImage(named: "1-5stars")!
+        }
+        else if (rating==2){
+            return UIImage(named: "2stars")!
+        }
+        else if (rating==2.5){
+            return UIImage(named: "2-5stars")!
+        }
+        else if (rating==3){
+            return UIImage(named: "3stars")!
+        }
+        else if (rating==3.5){
+            return UIImage(named: "3-5stars")!
+        }
+        else if (rating==4){
+            return UIImage(named: "4stars")!
+        }
+        else if (rating==4.5){
+            return UIImage(named: "4-5stars")!
+        }
+        else if (rating==5){
+            return UIImage(named: "5stars")!
+        }
+        else{
+            return UIImage(named: "emptystars")!
         }
     }
     
@@ -166,7 +261,41 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
             let cell = tableView.dequeueReusableCell(withIdentifier: "contentTableViewCell",
                                                      for: indexPath) as! ContentTableViewCell
             cell.contentUILabel.text = cellInfo[cellInfo.count - 1]
+            
             //cell.selectionStyle = UITableViewCellSelectionStyle.none
+            return cell
+        }
+        else if(cellInfo[0] == "review"){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "reviewTableViewCell",
+                                                     for: indexPath) as! ReviewTableViewCell
+            cell.contentUILabel.text = cellInfo[cellInfo.count - 1]
+            cell.ratingUIImageView.image = doubleToRatingImage(rating: Double(cellInfo[cellInfo.count-2])!)
+            cell.userNameUILabel.text = cellInfo[cellInfo.count - 3]
+            //userImage
+            if(cellInfo.count > 4){
+                cell.userUIImageView.layer.cornerRadius = cell.userUIImageView.frame.size.width/2
+                downloadImage(imageView: cell.userUIImageView, url: URL(string: cellInfo[1])!)
+            }
+            
+            //cell.layer.borderWidth = 1.0
+            //cell.layer.borderColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1).cgColor
+            //cell.contentView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+            //cell.selectionStyle = UITableViewCellSelectionStyle.none
+            return cell
+        }
+        else if(cellInfo[0] == "total-reviews"){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "totalReviewsTableViewCell",
+                                                     for: indexPath) as! TotalReviewsTableViewCell
+            cell.numReviewsUILabel.text = cellInfo[cellInfo.count-1] + " Reviews"
+            cell.ratingUIImageView.image = doubleToRatingImage(rating: Double(cellInfo[cellInfo.count-2])!)
+            
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            return cell
+        }
+        else if(cellInfo[0] == "padding-sm"){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "paddingsmTableViewCell",
+                                                     for: indexPath)
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         }
         else{ //if(cellInfo[0] == "padding"){
@@ -193,6 +322,19 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     @IBAction func newEntryButtonPressed(_ sender: UIButton) {
+        disableNewEntryButton()
         search()
+    }
+    
+    @IBOutlet weak var newEntryButton: UIButton!
+    func enableNewEntryButton()->Void{
+        newEntryButton.isEnabled = true
+        let textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        newEntryButton.setTitleColor(textColor, for: UIControlState.normal)
+    }
+    func disableNewEntryButton()->Void{
+        newEntryButton.isEnabled = false
+        let textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
+        newEntryButton.setTitleColor(textColor, for: UIControlState.normal)
     }
 }
