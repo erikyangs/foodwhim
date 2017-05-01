@@ -6,6 +6,15 @@ For indecisive people. Tells you **exactly** what to eat.
 
 <img src=https://github.com/erikyangs/foodwhim/blob/master/homescreen.jpg width="33%"><img src=https://github.com/erikyangs/foodwhim/blob/master/resultscreen.jpg width="33%"><img src=https://github.com/erikyangs/foodwhim/blob/master/settingscreen.jpg width="33%">
 
+## Features
+* Displays food around current GPS location
+* Provides basic business info and reviews
+* Search radius setting
+* Search term setting
+
+## Libraries, APIs, and more
+* Yelp Fusion API (CocoaPod)
+
 ## Setup
 Make sure you have CocoaPods installed. For reference: [Walkthrough From StackOverflow](http://stackoverflow.com/questions/20755044/how-to-install-cocoa-pods)
 ~~~~
@@ -17,15 +26,6 @@ Then navigate to the XCode project root directory (where .xcodeproj file resides
 pod install
 ~~~~
 Open the **.xcworkspace** file in XCode and run.
-
-## Features
-* Displays food around current GPS location
-* Provides basic business info and reviews
-* Search radius setting
-* Search term setting
-
-## Libraries, APIs, and more
-* Yelp Fusion API (CocoaPod)
 
 ## Troubleshooting (mostly for us developers to keep track of links)
 When adding/removing pods, you need to do the following. For reference: [Walkthrough from StackOverflow](http://stackoverflow.com/questions/13751147/remove-or-uninstall-library-previously-added-cocoapods)
