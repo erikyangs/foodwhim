@@ -382,6 +382,9 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
     
     //SETTINGS BUTTON
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
+        updateRestaurantNameUILabel(name: "Searching for food...")
+        businessInfo = []
+        infoTableView.reloadData()
         self.performSegue(withIdentifier: "segueToSettings", sender: nil)
     }
     
