@@ -66,11 +66,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     func authorizeYelp() -> Void{
         YLPClient.authorize(withAppId: appId, secret: appSecret,
                             completionHandler: {(client: YLPClient?, error: Error?) -> Void in
-                                if(!CLLocationManager.locationServicesEnabled() || CLLocationManager.authorizationStatus() == .notDetermined || CLLocationManager.authorizationStatus() == .restricted || CLLocationManager.authorizationStatus() == .denied) {
-                                    showAlert(viewController: self, alertTitle: "Error", alertMessage: "Please authorize location to run this app.", alertButtonText: "OK")
-                                    return
-                                }
-                                
                                 if(error==nil){
                                     self.yelpClient = client!
                                     print("Yelp API authorized for app")
